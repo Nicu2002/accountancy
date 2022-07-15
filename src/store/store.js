@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import usersReducer from '../components/App/usersSlice';
 
+
 const reducer = {
     users: usersReducer
 }

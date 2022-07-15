@@ -4,13 +4,13 @@
 }
 
 #searchBar input{
-    height: 40px;
-    width: 400px;
+    height: 4vh;
+    width: 40vw;
 }
 
 #searchBar button {
-    width: 50px;
-    height: 40px;
+    width: 4vw;
+    height: 4vh;
     margin-bottom: 5px;
     border-radius: 0;
 }

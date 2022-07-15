@@ -4,32 +4,24 @@ import {List, Button} from 'antd';
 import 'antd/dist/antd.css';
 import './ItemsList.css';
 
-import {initUsers} from '../App/usersSlice';
 import UsersService from './../../Services/usersService';
+import {onDelete, onDataLoaded} from './itemListService';
+
+
+const usersService = new UsersService();
 
 const ItemsList = () => {
-    const usersService = new UsersService();
 
     const dispatch = useDispatch();
     const {users, filter} = useSelector(state => state.users);
-
     const [isLoading, setisLoading] = useState(true);
 
     useEffect(() => {
+        setisLoading(true);
         usersService.getAllData(filter)
-          .then(onDataLoaded);
+          .then((newItems) => onDataLoaded(newItems, dispatch, setisLoading));
     }, [filter]);
     
-    function onDataLoaded(newItems) {
-        dispatch(initUsers(newItems))
-        setisLoading(false);
-    }
-    
-    const onDelete = (id) => {
-        const data = users.filter(item => item.id !== id);
-        dispatch(initUsers(data));
-    }
-
     return (
         <List loading={isLoading} bordered className="list-group" dataSource={users} renderItem={(item)=>(
             <List.Item className="d-flex justify-content-between align-items-center">
@@ -42,7 +34,7 @@ const ItemsList = () => {
                     <b>Email : </b>{item.email}<br/>
                     <b>Phone number : </b>{item.phoneNumber}
                 </div>
-                <Button type="primary" danger onClick={() => onDelete(item.id)}>
+                <Button type="primary" danger onClick={() => onDelete(item.id, users, dispatch)}>
                     Delete
                 </Button>
             </List.Item>
