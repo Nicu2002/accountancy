@@ -1,4 +1,10 @@
+// @flow
 import { createSlice } from '@reduxjs/toolkit';
+
+type State = {
+    users: Array<{}>,
+    filter: string
+}
 
 const initialState = {
     users: [],
