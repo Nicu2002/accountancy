@@ -1,9 +1,20 @@
 
 
+import AddForm from './../AddForm/AddForm';
+import Filter from './../Filter/Filter';
+import ItemsList from './../ItemsList/ItemsList';
+
+
 const App = () => {
 
     return(
-        <div></div>
+        <div className='app'>
+            <Filter/>
+            <div className='d-flex'>
+                <ItemsList/>
+                <AddForm/>
+            </div>
+    </div>
     );
 }
 
