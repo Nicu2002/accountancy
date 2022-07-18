@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 const DropDownFilter = ({onChangeFilter}) => {
     return(
         <Dropdown overlay={<ArrowMenu onChangeFilter={onChangeFilter}/>} placement="bottomLeft" arrow>
-            <Button variant="dark" style={{margin: "0 10px"}}>Filter</Button>
+            <Button variant="dark" style={{margin: "20px 10px"}}>Filter</Button>
         </Dropdown>
     );
 }
