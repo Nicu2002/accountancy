@@ -22,9 +22,9 @@ export const onAddItem = ({ name, job, city, email, phoneNumber}, dispatch) => {
         Email: email,
         "Phone Number": phoneNumber
     };
-    userService.postData(result);
-    dispatch(addUser(item));
-    message.success("User added!", 2);
+    userService.postData(result)
+    .then(() => dispatch(addUser(item)))
+    .then(() => message.success("User added!", 2));
 }
 
 export const onValueChange = (e, dataState, dataSetState) => {

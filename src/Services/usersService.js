@@ -11,10 +11,10 @@ class UsersService {
         return await res.json();
     }
 
-    getAllData = async(filter) => {
+    getAllData = async(filter, filterName) => {
         let url = this._URL;
-        if(!!filter) {
-            url = this._URL + `?Name=${filter}`
+        if(!!filter && !!filterName) {
+            url = this._URL + `?${filterName}=${filter}`
         }
         const res = await this.getResource(url);
         let filtredArray = res.map(this._parseData).filter(item => !!item.name === true);
@@ -47,12 +47,13 @@ class UsersService {
         }
     }
 
-    postData = (newItem) => {
-        fetch(this._URL, {
+    postData = async (newItem) => {
+        const res = await fetch(this._URL, {
             method: 'POST',
             headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
             body: JSON.stringify(newItem)
         });
+        return await res;
     }
 }
 

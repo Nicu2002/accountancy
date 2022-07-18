@@ -8,7 +8,8 @@ type State = {
 
 const initialState = {
     users: [],
-    filter: ''
+    filter: '',
+    filterName: ''
 };
 
 const usersSlice = createSlice({
@@ -22,7 +23,8 @@ const usersSlice = createSlice({
             state.users = [...state.users, action.payload];
         },
         setFilter(state, action) {
-            state.filter = action.payload;
+            state.filter = action.payload.term;
+            state.filterName = action.payload.filterName;
         }
     }
 })

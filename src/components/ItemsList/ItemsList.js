@@ -13,14 +13,14 @@ const usersService = new UsersService();
 const ItemsList = () => {
 
     const dispatch = useDispatch();
-    const {users, filter} = useSelector(state => state.users);
+    const {users, filter, filterName} = useSelector(state => state.users);
     const [isLoading, setisLoading] = useState(true);
 
     useEffect(() => {
         setisLoading(true);
-        usersService.getAllData(filter)
+        usersService.getAllData(filter, filterName)
           .then((newItems) => onDataLoaded(newItems, dispatch, setisLoading));
-    }, [filter]);
+    }, [filter, filterName]);
     
     return (
         <List loading={isLoading} bordered className="list-group" dataSource={users} renderItem={(item)=>(
